@@ -1,8 +1,9 @@
+import category from "@/polimath-insights-database/schemaTypes/category"
 import Image from "next/image"
 
 const BlogCard = ({postData }) => {
   return (
-    <div className="flex flex-col space-y-2 bg-primary-bg w-72 hover:scale-105 transition-transform duration-200 ease-out  overflow-hidden  rounded-xl shadow-sm shadow-gray-400">
+    <div className="flex flex-col space-y-2 bg-primary-bg w-72 hover:scale-105 transition-transform duration-200 ease-out  overflow-hidden  rounded-xl shadow-sm shadow-gray-400 py-2">
         <div className=" rounded">
     <Image src={postData.image}
         width={400} height={200} alt="blog" 
@@ -22,9 +23,10 @@ const BlogCard = ({postData }) => {
                 </p>
             </div>
             <div className="flex flexrow flex-wrap space-x-2">
-                <p className="border bg-primary-dark text-primary-bg p-2 text-xs rounded-md ">Programming</p>
-                <p className="border bg-primary-dark text-primary-bg p-2 text-xs rounded-md ">Cloud</p>
-                
+                {postData.categories.map((category)=>(
+                    <p key={category._id} className="bg-primary-dark px-3 py-2 text-sm rounded-md text-primary-bg">{category.name}</p>
+                ))}
+            
             </div>
         </div>
     </div>
