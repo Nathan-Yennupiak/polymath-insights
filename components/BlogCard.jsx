@@ -1,19 +1,24 @@
 import Image from "next/image"
 
-const BlogCard = () => {
+const BlogCard = ({postData }) => {
   return (
     <div className="flex flex-col space-y-2 bg-primary-bg w-72 hover:scale-105 transition-transform duration-200 ease-out  overflow-hidden  rounded-xl shadow-sm shadow-gray-400">
         <div className=" rounded">
-        <Image src="/images/programmer.webp" width={300} height={200} alt="blog" className="rounded"/>
+    <Image src={postData.image}
+        width={400} height={200} alt="blog" 
+        className=" object-cover rounded"/>
         </div>
         <div className="flex flex-col p-3 gap-2">
-            <p className="font-semibold text-sm text-primary-brand">Nathan, December 12 2024</p>
+            <div className="flex flex-row justify-between">
+            <p className="font-semibold text-sm bg-primary-gray px-3 py-2">{postData.author.name}</p>
+            <p className="font-semibold text-sm"> {new Date(postData.publishedAt).toLocaleDateString('en-US')}</p>
+            </div>
             <div>
-                <h1 className="text-xl font-bold"> How to become a Programmer</h1>
+                <h1 className="text-xl font-bold line-clamp-1"> {postData.title}</h1>
             </div>
             <div>
                 <p className="line-clamp-2">
-                This Blog is perfect if you have a blog idea and you want to share. Using its high-quality sections and components you can showcase your blog articles in a very beautiful and unique way.
+                {postData.body}
                 </p>
             </div>
             <div className="flex flexrow flex-wrap space-x-2">
